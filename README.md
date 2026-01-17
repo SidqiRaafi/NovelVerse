@@ -9,9 +9,9 @@ lib/
 │
 ├── screens/
 │   ├── auth/
-│   │   ├── login_page.dart         //form login                ❌
-│   │   ├── register_page.dart      //form register             ❌
-│   │   └── welcome_page.dart       //pilih login register      ❌
+│   │   ├── login_page.dart         //form login                ✔️
+│   │   ├── register_page.dart      //form register             ✔️
+│   │   └── welcome_page.dart       //pilih login register      ✔️
 │   │
 │   ├── home/
 │   │   ├── add_novel_page.dart     //form tambah novel         ✔️
@@ -26,7 +26,7 @@ lib/
 │   └── splash_screen.dart           //splash screen             ❌
 │
 ├── services/
-│   ├── auth_service.dart           //Firebase Auth login dan Register      ❌
+│   ├── auth_service.dart           //Firebase Auth login dan Register      ✔️
 │   └── firestore_service.dart      //CRUD Novel                            ✔️
 │
 ├── widgets/
