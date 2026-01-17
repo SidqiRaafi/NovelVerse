@@ -17,7 +17,7 @@ class Novel {
     required this.rating,
   });
 
-  // From Firestore
+  // dari firestore
   factory Novel.fromMap(Map<String, dynamic> map, String documentId) {
     return Novel(
       id: documentId,
@@ -30,7 +30,7 @@ class Novel {
     );
   }
 
-  // To Firestore
+  // ke firestore
   Map<String, dynamic> toMap() {
     return {
       'title': title,

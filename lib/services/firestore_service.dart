@@ -5,7 +5,7 @@ class FirestoreService {
   final CollectionReference _novelsCollection =
       FirebaseFirestore.instance.collection('novels');
 
-  // Get all novels
+  // tunjukan semua novel
   Stream<List<Novel>> getNovels() {
     return _novelsCollection.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
@@ -14,7 +14,7 @@ class FirestoreService {
     });
   }
 
-  // Search novels by title
+  // cari dari judul, author, genre
   Stream<List<Novel>> searchNovels(String query) {
     if (query.isEmpty) {
       return getNovels();
@@ -31,7 +31,7 @@ class FirestoreService {
     });
   }
 
-  // Add novel
+  // Tambah novel
   Future<void> addNovel(Novel novel) async {
     await _novelsCollection.add(novel.toMap());
   }
@@ -41,7 +41,7 @@ class FirestoreService {
     await _novelsCollection.doc(novel.id).update(novel.toMap());
   }
 
-  // Delete novel
+  // Hapus novel
   Future<void> deleteNovel(String novelId) async {
     await _novelsCollection.doc(novelId).delete();
   }

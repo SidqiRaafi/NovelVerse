@@ -56,7 +56,7 @@ class DetailPage extends StatelessWidget {
         title: Text(novel.title),
         elevation: 0,
         actions: [
-          // Edit button (disable karena tidak ada edit page)
+          // Edit button
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
@@ -77,7 +77,7 @@ class DetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Cover Image - Centered Portrait Style
+            // Cover Image
             Container(
               width: double.infinity,
               height: 400,
@@ -236,29 +236,6 @@ class DetailPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 32),
-
-                  // Read button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Chapter list coming soon!')),
-                        );
-                      },
-                      icon: Icon(Icons.book_outlined),
-                      label: Text(
-                        'Start Reading',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
