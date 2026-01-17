@@ -20,15 +20,15 @@ lib/
 │   │   ├── list_page.dart          //list novel dan search     ✔️
 │   │   └── main_page.dart          //navigasi                  ✔️
 │   │
-│   └── profile/
-│       └── about_page.dart         //info app dan dev          ❌
-│       └── profile_page.dart       //tentang user dan logout   ❌
+│   ├── profile/
+│   │    └── about_page.dart         //info app dan dev          ❌
+│   │    └── profile_page.dart       //tentang user dan logout   ❌
+│   └── splash_screen.dart           //splash screen             ❌
 │
 ├── services/
 │   ├── auth_service.dart           //Firebase Auth login dan Register      ❌
 │   └── firestore_service.dart      //CRUD Novel                            ✔️
 │
 ├── firebase_options.dart           //config firebase add manual dari WA    ‼️‼️
-├── main.dart                       //entry point                           ✔️
-└── splash_screen.dart              //splash screen                         ❌
+└── main.dart                       //entry point                           ✔️
 ```
