@@ -30,7 +30,7 @@ lib/
 │   └── firestore_service.dart      //CRUD Novel                            ✔️
 │
 ├── widgets/
-│   ├── auth_wrapper.dart           //agar tidak login terus                ✔️
+│   └── auth_wrapper.dart           //Persistent Login System               ✔️
 │
 ├── firebase_options.dart           //config firebase add manual dari WA    ‼️‼️
 └── main.dart                       //entry point                           ✔️
