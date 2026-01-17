@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../services/auth_service.dart';
 import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -11,10 +12,126 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
+  bool _isLoading = false;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  final AuthService _authService = AuthService();
+
+  // Validation
+  String? _validateEmail(String email) {
+    if (email.isEmpty) {
+      return 'Email is required';
+    }
+    if (!email.contains('@') || !email.contains('.')) {
+      return 'Invalid email format';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String password) {
+    if (password.isEmpty) {
+      return 'Password is required';
+    }
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+    return null;
+  }
+
+  String? _validateConfirmPassword(String password, String confirmPassword) {
+    if (confirmPassword.isEmpty) {
+      return 'Please confirm your password';
+    }
+    if (password != confirmPassword) {
+      return 'Passwords do not match';
+    }
+    return null;
+  }
+
+  // Show error message
+  void _showError(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  // Show success message
+  void _showSuccess(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.green,
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
+  // Handle register
+  Future<void> _handleRegister() async {
+    // Validate inputs
+    final emailError = _validateEmail(_emailController.text.trim());
+    final passwordError = _validatePassword(_passwordController.text.trim());
+    final confirmPasswordError = _validateConfirmPassword(
+      _passwordController.text.trim(),
+      _confirmPasswordController.text.trim(),
+    );
+
+    if (emailError != null) {
+      _showError(emailError);
+      return;
+    }
+    if (passwordError != null) {
+      _showError(passwordError);
+      return;
+    }
+    if (confirmPasswordError != null) {
+      _showError(confirmPasswordError);
+      return;
+    }
+
+    // Start loading
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Attempt register
+      await _authService.registerWithEmail(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+
+      // Success! Show message and navigate to LoginPage
+      _showSuccess('Account created successfully! Please login.');
+      
+      if (mounted) {
+        // Wait a bit for success message
+        await Future.delayed(const Duration(milliseconds: 800));
+        
+        // Navigate to LoginPage
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
+      }
+    } catch (e) {
+      // Show error
+      _showError(e.toString());
+    } finally {
+      // Stop loading
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +209,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           child: const Center(
                             child: Text(
-                              'Sign up',
+                              'Sign Up',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -122,6 +239,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       controller: _emailController,
                       style: const TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintText: 'youremail@gmail.com',
                         hintStyle: const TextStyle(
@@ -248,123 +366,31 @@ class _RegisterPageState extends State<RegisterPage> {
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
-                    onPressed: () {
-                      // Handle sign up
-                    },
+                    onPressed: _isLoading ? null : _handleRegister,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF7C3AED),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      disabledBackgroundColor: const Color(0xFF7C3AED).withOpacity(0.6),
                     ),
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-                // Or divider
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 1,
-                        color: const Color(0xFF333333),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'Or',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFF888888),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 1,
-                        color: const Color(0xFF333333),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                // Google Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // Handle Google sign up
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                        color: Color(0xFF333333),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/google_logo.png',
-                          width: 20,
-                          height: 20,
-                        ),
-                        const SizedBox(width: 12),
-                        const Text(
-                          'Continue with Google',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                    child: _isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : const Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                // Facebook Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // Handle Facebook sign up
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                        color: Color(0xFF333333),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.facebook, color: Color(0xFF1877F2)),
-                        const SizedBox(width: 12),
-                        const Text(
-                          'Continue with Facebook',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ),
                 const SizedBox(height: 32),

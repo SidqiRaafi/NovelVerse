@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../services/auth_service.dart';
 import 'register_page.dart';
+import '../home/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,9 +12,89 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
-  bool _rememberMe = false;
+  bool _isLoading = false;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
+
+  // Validation
+  String? _validateEmail(String email) {
+    if (email.isEmpty) {
+      return 'Email is required';
+    }
+    if (!email.contains('@') || !email.contains('.')) {
+      return 'Invalid email format';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String password) {
+    if (password.isEmpty) {
+      return 'Password is required';
+    }
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+    return null;
+  }
+
+  // Show error message
+  void _showError(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  // Handle login
+  Future<void> _handleLogin() async {
+    // Validate inputs
+    final emailError = _validateEmail(_emailController.text.trim());
+    final passwordError = _validatePassword(_passwordController.text.trim());
+
+    if (emailError != null) {
+      _showError(emailError);
+      return;
+    }
+    if (passwordError != null) {
+      _showError(passwordError);
+      return;
+    }
+
+    // Start loading
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Attempt login
+      await _authService.loginWithEmail(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+
+      // Success! Navigate to MainPage
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => MainPage()),
+        );
+      }
+    } catch (e) {
+      // Show error
+      _showError(e.toString());
+    } finally {
+      // Stop loading
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                     TextField(
                       controller: _emailController,
                       style: const TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintText: 'youremail@gmail.com',
                         hintStyle: const TextStyle(
@@ -189,174 +272,37 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
-                // Remember me & Forgot Password
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: Checkbox(
-                            value: _rememberMe,
-                            onChanged: (value) {
-                              setState(() {
-                                _rememberMe = value ?? false;
-                              });
-                            },
-                            activeColor: const Color(0xFF7C3AED),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        const Text(
-                          'Remember me',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Color(0xFF888888),
-                          ),
-                        ),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        // Handle forgot password
-                      },
-                      child: const Text(
-                        'Forgot Password ?',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFF7C3AED),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 const SizedBox(height: 32),
                 // Log In Button
                 SizedBox(
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
-                    onPressed: () {
-                      // Handle login
-                    },
+                    onPressed: _isLoading ? null : _handleLogin,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF7C3AED),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      disabledBackgroundColor: const Color(0xFF7C3AED).withOpacity(0.6),
                     ),
-                    child: const Text(
-                      'Log In',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-                // Or divider
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 1,
-                        color: const Color(0xFF333333),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'Or',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFF888888),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 1,
-                        color: const Color(0xFF333333),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                // Google Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // Handle Google login
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                        color: Color(0xFF333333),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/google_logo.png',
-                          width: 20,
-                          height: 20,
-                        ),
-                        const SizedBox(width: 12),
-                        const Text(
-                          'Continue with Google',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                    child: _isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : const Text(
+                            'Log In',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                // Facebook Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // Handle Facebook login
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                        color: Color(0xFF333333),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.facebook, color: Color(0xFF1877F2)),
-                        const SizedBox(width: 12),
-                        const Text(
-                          'Continue with Facebook',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ),
                 const SizedBox(height: 32),
