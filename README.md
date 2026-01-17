@@ -2,6 +2,7 @@
 android/
 ├── app/
 │   └── google-services.json        //add manual dari WA    ‼️‼️
+lib/
 ├── models/
 │   ├── novel.dart                  //data novel    ✔️
 │   └── user.dart                   //data user     ❌
