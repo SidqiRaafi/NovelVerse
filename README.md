@@ -9,8 +9,7 @@ lib/
 │
 ├── screens/
 │   ├── auth/
-│   │   ├── login_page.dart         //form login                ✔️
-│   │   ├── register_page.dart      //form register             ✔️
+│   │   ├── auth_page.dart          //form login dan register   ✔️
 │   │   └── welcome_page.dart       //pilih login register      ✔️
 │   │
 │   ├── home/
@@ -21,9 +20,9 @@ lib/
 │   │   └── main_page.dart          //navigasi                  ✔️
 │   │
 │   ├── profile/
-│   │    └── about_page.dart         //info app dan dev          ❌
+│   │    └── about_page.dart         //info app dan dev          ✔️
 │   │    └── profile_page.dart       //tentang user dan logout   ❌
-│   └── splash_screen.dart           //splash screen             ❌
+│   └── splash_screen.dart           //splash screen             ✔️
 │
 ├── services/
 │   ├── auth_service.dart           //Firebase Auth login dan Register      ✔️

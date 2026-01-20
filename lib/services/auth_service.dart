@@ -5,8 +5,6 @@ class AuthService {
 
   // Get current user
   User? get currentUser => _auth.currentUser;
-
-  // Stream to listen for auth changes
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
   // REGISTER with Email & Password
@@ -21,7 +19,7 @@ class AuthService {
       );
       return result.user;
     } on FirebaseAuthException catch (e) {
-      // Handle specific Firebase Auth errors
+      // Handle Auth errors
       switch (e.code) {
         case 'weak-password':
           throw 'Password is too weak';
@@ -49,7 +47,7 @@ class AuthService {
       );
       return result.user;
     } on FirebaseAuthException catch (e) {
-      // Handle specific Firebase Auth errors
+      // Handle Auth errors
       switch (e.code) {
         case 'user-not-found':
           throw 'No user found with this email';

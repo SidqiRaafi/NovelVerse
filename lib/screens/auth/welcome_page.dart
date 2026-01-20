@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
-import 'register_page.dart';
+import 'auth_page.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+  const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF4A148C),  // Darker purple
-              Color(0xFF1A0033),  // Almost black purple
+              Color(0xFF4A148C),
+              Color(0xFF1A0033),
             ],
           ),
         ),
@@ -40,7 +39,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
                 
-                const SizedBox(height: 32),  // Reduced from 40
+                const SizedBox(height: 32),
                 
                 // Title
                 const Text(
@@ -61,7 +60,7 @@ class WelcomePage extends StatelessWidget {
                     letterSpacing: 1.2,
                   ),
                 ),
-                const SizedBox(height: 12),  // Reduced from 16
+                const SizedBox(height: 12),
                 
                 // Subtitle
                 const Text(
@@ -74,9 +73,8 @@ class WelcomePage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 
-                const Spacer(flex: 2),  // Reduced from 3
+                const Spacer(flex: 2),
                 
-                // Login Button
                 SizedBox(
                   width: double.infinity,
                   height: 56,
@@ -85,13 +83,13 @@ class WelcomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
+                          builder: (context) => const AuthPage(initialTab: 0),  // ✅ Login tab
                         ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      foregroundColor: Color(0xFF4A148C),
+                      foregroundColor: const Color(0xFF4A148C),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
@@ -108,9 +106,8 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
                 
-                const SizedBox(height: 14),  // Reduced from 16
+                const SizedBox(height: 14),
                 
-                // Create Account Button
                 SizedBox(
                   width: double.infinity,
                   height: 56,
@@ -119,7 +116,7 @@ class WelcomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const RegisterPage(),
+                          builder: (context) => const AuthPage(initialTab: 1),  // ✅ Register tab
                         ),
                       );
                     },
