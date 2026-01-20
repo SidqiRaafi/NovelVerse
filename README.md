@@ -2,6 +2,23 @@
 android/
 ├── app/
 │   └── google-services.json        //add manual dari WA    ‼️‼️
+│
+assets/
+├── logo/
+│   └── logo.png                    //app logo      ❌
+│
+├── demo/
+│   ├── welcome.png                 //showcase welcome screen       ❌
+│   ├── login.png                   //showcase login screen         ❌
+│   ├── register.png                //showcase register screen      ❌
+│   ├── home1.png                   //showcase home screen          ❌
+│   ├── home2.png                   //showcase novel scren          ❌
+│   ├── home3.png                   //showcase add novel screen     ❌
+│   ├── home4.png                   //showcase edit novel screen    ❌
+│   ├── home5.png                   //showcase delete novel screen  ❌
+│   ├── profile.png                 //showcase profile screen       ❌
+│   └── about.png                   //showcase about app screen     ❌
+│
 lib/
 ├── models/
 │   ├── novel.dart                  //data novel    ✔️
