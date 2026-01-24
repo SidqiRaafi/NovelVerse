@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "280919114293",
+    "project_id": "novelverse-67426",
+    "storage_bucket": "novelverse-67426.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280919114293:android:ecf0bd7b11251157e4a77c",
+        "android_client_info": {
+          "package_name": "com.sawitkiawan.novelverse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaUeOg54L7zwXsvW-wOQo0CW-X7MI06ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
