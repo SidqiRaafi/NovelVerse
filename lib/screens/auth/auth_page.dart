@@ -94,7 +94,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFC62828),
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -104,7 +104,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: Colors.green,
+        backgroundColor: const Color(0xFF2E7D32),
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -135,7 +135,24 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => MainPage()),
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => MainPage(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              const curve = Curves.easeOut;
+              
+              var scaleTween = Tween(begin: 0.97, end: 1.0).chain(CurveTween(curve: curve));
+              var fadeTween = Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: curve));
+
+              return FadeTransition(
+                opacity: animation.drive(fadeTween),
+                child: ScaleTransition(
+                  scale: animation.drive(scaleTween),
+                  child: child,
+                ),
+              );
+            },
+            transitionDuration: const Duration(milliseconds: 800),
+          ),
         );
       }
     } catch (e) {
@@ -191,62 +208,70 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1A2E),
+      backgroundColor: const Color(0xFF1E1E1E),
       body: SafeArea(
         child: Column(
           children: [
+            // Back button
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
                   IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Color(0xFFF5F1E8),
+                    ),
                   ),
                 ],
               ),
             ),
 
+            // Title
             const Text(
               'Get Started now',
               style: TextStyle(
                 fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFFB8941F),
+                letterSpacing: 0.5,
               ),
             ),
             const SizedBox(height: 12),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Text(
-                'Create an account or log in to explore about our app',
+                'Create an account or log in to explore NovelVerse',
                 style: TextStyle(
                   fontSize: 14,
-                  color: Color(0xFFB0B0B0),
+                  color: const Color(0xFFF5F1E8).withOpacity(0.6),
+                  height: 1.4,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 24),
 
+            // Tab Bar
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF5F5F5),
+                  color: const Color(0xFF2A2A2A),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 padding: const EdgeInsets.all(4),
                 child: TabBar(
                   controller: _tabController,
                   indicator: BoxDecoration(
-                    color: Colors.white,
+                    color: const Color(0xFFB8941F),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   indicatorSize: TabBarIndicatorSize.tab,
                   dividerColor: Colors.transparent,
-                  labelColor: const Color(0xFF1A1A2E),
-                  unselectedLabelColor: const Color(0xFF888888),
+                  labelColor: const Color(0xFF1E1E1E),
+                  unselectedLabelColor: const Color(0xFFF5F1E8).withOpacity(0.6),
                   labelStyle: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -261,6 +286,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
 
             const SizedBox(height: 24),
 
+            // Forms
             Expanded(
               child: PageView(
                 controller: _pageController,
@@ -367,25 +393,35 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF888888),
+            color: const Color(0xFFF5F1E8).withOpacity(0.7),
+            letterSpacing: 0.5,
           ),
         ),
         const SizedBox(height: 8),
         TextField(
           controller: controller,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: Color(0xFFF5F1E8)),
           keyboardType: keyboardType,
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: const TextStyle(color: Color(0xFFCCCCCC)),
+            hintStyle: TextStyle(
+              color: const Color(0xFFF5F1E8).withOpacity(0.3),
+            ),
             filled: true,
-            fillColor: const Color(0xFFF5F5F5),
+            fillColor: const Color(0xFF2A2A2A),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(
+                color: Color(0xFFB8941F),
+                width: 1.5,
+              ),
             ),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -408,25 +444,35 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF888888),
+            color: const Color(0xFFF5F1E8).withOpacity(0.7),
+            letterSpacing: 0.5,
           ),
         ),
         const SizedBox(height: 8),
         TextField(
           controller: controller,
           obscureText: !isVisible,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: Color(0xFFF5F1E8)),
           decoration: InputDecoration(
             hintText: '••••••••',
-            hintStyle: const TextStyle(color: Color(0xFFCCCCCC)),
+            hintStyle: TextStyle(
+              color: const Color(0xFFF5F1E8).withOpacity(0.3),
+            ),
             filled: true,
-            fillColor: const Color(0xFFF5F5F5),
+            fillColor: const Color(0xFF2A2A2A),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(
+                color: Color(0xFFB8941F),
+                width: 1.5,
+              ),
             ),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -435,7 +481,8 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
             suffixIcon: IconButton(
               icon: Icon(
                 isVisible ? Icons.visibility : Icons.visibility_off,
-                color: const Color(0xFF888888),
+                color: const Color(0xFFB8941F),
+                size: 20,
               ),
               onPressed: onToggle,
             ),
@@ -456,18 +503,20 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF7C3AED),
+          backgroundColor: const Color(0xFFB8941F),
+          foregroundColor: const Color(0xFF1E1E1E),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          disabledBackgroundColor: const Color(0xFF7C3AED).withOpacity(0.6),
+          disabledBackgroundColor: const Color(0xFFB8941F).withOpacity(0.5),
+          elevation: 0,
         ),
         child: isLoading
             ? const SizedBox(
                 height: 20,
                 width: 20,
                 child: CircularProgressIndicator(
-                  color: Colors.white,
+                  color: Color(0xFF1E1E1E),
                   strokeWidth: 2,
                 ),
               )
@@ -476,7 +525,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                  letterSpacing: 0.5,
                 ),
               ),
       ),

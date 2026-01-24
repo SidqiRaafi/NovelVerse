@@ -13,6 +13,7 @@ class _ListPageState extends State<ListPage> {
   final FirestoreService _firestoreService = FirestoreService();
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
+  List<Novel>? _cachedNovels;
 
   @override
   void dispose() {
@@ -23,23 +24,45 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F1E8),
       appBar: AppBar(
-        title: Text('NovelVerse'),
+        backgroundColor: const Color(0xFFF5F1E8),
         elevation: 0,
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'NovelVerse',
+          style: TextStyle(
+            color: Color(0xFFB8941F),
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.0,
+          ),
+        ),
+        centerTitle: false,
       ),
       body: Column(
         children: [
           // Search bar
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
             child: TextField(
               controller: _searchController,
+              style: const TextStyle(color: Color(0xFF2D2D2D)),
               decoration: InputDecoration(
                 hintText: 'Search novels...',
-                prefixIcon: Icon(Icons.search),
+                hintStyle: TextStyle(
+                  color: const Color(0xFF2D2D2D).withOpacity(0.4),
+                ),
+                prefixIcon: const Icon(
+                  Icons.search_rounded,
+                  color: Color(0xFFB8941F),
+                ),
                 suffixIcon: _searchQuery.isNotEmpty
                     ? IconButton(
-                        icon: Icon(Icons.clear),
+                        icon: const Icon(
+                          Icons.clear_rounded,
+                          color: Color(0xFF6B5B4B),
+                        ),
                         onPressed: () {
                           setState(() {
                             _searchController.clear();
@@ -48,8 +71,30 @@ class _ListPageState extends State<ListPage> {
                         },
                       )
                     : null,
+                filled: true,
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(
+                    color: Color(0xFFD4C5B0),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(
+                    color: Color(0xFFD4C5B0),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(
+                    color: Color(0xFFB8941F),
+                    width: 1.5,
+                  ),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
                 ),
               ),
               onChanged: (value) {
@@ -63,92 +108,79 @@ class _ListPageState extends State<ListPage> {
             child: StreamBuilder<List<Novel>>(
               stream: _firestoreService.searchNovels(_searchQuery),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                if (snapshot.hasData) {
+                  _cachedNovels = snapshot.data;
+                }
+                
+                if (snapshot.connectionState == ConnectionState.waiting && _cachedNovels == null) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Color(0xFFB8941F),
+                    ),
+                  );
                 }
                 
                 if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
+                  return Center(
+                    child: Text(
+                      'Error: ${snapshot.error}',
+                      style: const TextStyle(color: Color(0xFFC62828)),
+                    ),
+                  );
                 }
                 
-                if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                List<Novel> novels = _cachedNovels ?? [];
+                
+                if (novels.isEmpty) {
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.book_outlined, size: 64, color: Colors.grey),
-                        SizedBox(height: 16),
+                        Icon(
+                          Icons.menu_book_rounded,
+                          size: 64,
+                          color: const Color(0xFF6B5B4B).withOpacity(0.4),
+                        ),
+                        const SizedBox(height: 16),
                         Text(
-                          'No novels found',
-                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                          _searchQuery.isEmpty ? 'No novels yet' : 'No novels found',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: const Color(0xFF6B5B4B).withOpacity(0.6),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          _searchQuery.isEmpty
+                              ? 'Tap + to add your first novel'
+                              : 'Try a different search term',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: const Color(0xFF6B5B4B).withOpacity(0.5),
+                          ),
                         ),
                       ],
                     ),
                   );
                 }
                 
-                List<Novel> novels = snapshot.data!;
-                
                 return ListView.builder(
                   itemCount: novels.length,
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemBuilder: (context, index) {
                     Novel novel = novels[index];
-                    return Card(
-                      margin: EdgeInsets.only(bottom: 12),
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: const Color(0xFFD4C5B0),
+                          width: 0.5,
+                        ),
                       ),
-                      child: ListTile(
-                        contentPadding: EdgeInsets.all(12),
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
-                            novel.coverUrl.isNotEmpty
-                                ? novel.coverUrl
-                                : 'https://via.placeholder.com/80x120?text=No+Cover',
-                            width: 60,
-                            height: 90,
-                            fit: BoxFit.cover,
-                            errorBuilder: (ctx, err, stack) =>
-                                Container(
-                                  width: 60,
-                                  height: 90,
-                                  color: Colors.grey[300],
-                                  child: Icon(Icons.book, size: 30),
-                                ),
-                          ),
-                        ),
-                        title: Text(
-                          novel.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 4),
-                            Text('by ${novel.author}'),
-                            SizedBox(height: 4),
-                            Row(
-                              children: [
-                                Icon(Icons.category, size: 14, color: Colors.grey),
-                                SizedBox(width: 4),
-                                Text(novel.genre, style: TextStyle(fontSize: 12)),
-                                SizedBox(width: 12),
-                                Icon(Icons.star, size: 14, color: Colors.amber),
-                                SizedBox(width: 4),
-                                Text(novel.rating.toString(), style: TextStyle(fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                      child: InkWell(
                         onTap: () {
                           Navigator.push(
                             context,
@@ -157,6 +189,116 @@ class _ListPageState extends State<ListPage> {
                             ),
                           );
                         },
+                        borderRadius: BorderRadius.circular(12),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Cover image
+                              Hero(
+                                tag: 'novel_${novel.id}',
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.network(
+                                    novel.coverUrl.isNotEmpty
+                                        ? novel.coverUrl
+                                        : 'https://via.placeholder.com/80x120?text=No+Cover',
+                                    width: 60,
+                                    height: 90,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (ctx, err, stack) => Container(
+                                      width: 60,
+                                      height: 90,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFF5F1E8),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: const Icon(
+                                        Icons.book,
+                                        size: 30,
+                                        color: Color(0xFFB8941F),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              
+                              // Novel info
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      novel.title,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        color: Color(0xFF2D2D2D),
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      'by ${novel.author}',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xFF6B5B4B),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8,
+                                            vertical: 4,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFFF5F1E8),
+                                            borderRadius: BorderRadius.circular(6),
+                                          ),
+                                          child: Text(
+                                            novel.genre,
+                                            style: const TextStyle(
+                                              fontSize: 11,
+                                              color: Color(0xFF8B4513),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        const Icon(
+                                          Icons.star_rounded,
+                                          size: 16,
+                                          color: Color(0xFFB8941F),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Text(
+                                          novel.rating.toString(),
+                                          style: const TextStyle(
+                                            fontSize: 13,
+                                            color: Color(0xFF2D2D2D),
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              
+                              // Arrow icon
+                              const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 16,
+                                color: Color(0xFF6B5B4B),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     );
                   },
@@ -173,7 +315,10 @@ class _ListPageState extends State<ListPage> {
             MaterialPageRoute(builder: (_) => AddNovelPage()),
           );
         },
-        child: Icon(Icons.add),
+        backgroundColor: const Color(0xFFB8941F),
+        foregroundColor: const Color(0xFF1E1E1E),
+        elevation: 4,
+        child: const Icon(Icons.add_rounded),
         tooltip: 'Add Novel',
       ),
     );

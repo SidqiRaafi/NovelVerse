@@ -5,7 +5,7 @@ android/
 │
 assets/
 ├── logo/
-│   └── logo.png                    //app logo      ❌
+│   └── logo.png                    //app logo      ✔️
 │
 ├── demo/
 │   ├── welcome.png                 //showcase welcome screen       ❌
@@ -22,7 +22,7 @@ assets/
 lib/
 ├── models/
 │   ├── novel.dart                  //data novel    ✔️
-│   └── user.dart                   //data user     ❌
+│   └── user.dart                   //data user     ✔️
 │
 ├── screens/
 │   ├── auth/
@@ -38,7 +38,7 @@ lib/
 │   │
 │   ├── profile/
 │   │    └── about_page.dart         //info app dan dev          ✔️
-│   │    └── profile_page.dart       //tentang user dan logout   ❌
+│   │    └── profile_page.dart       //tentang user dan logout   ✔️
 │   └── splash_screen.dart           //splash screen             ✔️
 │
 ├── services/

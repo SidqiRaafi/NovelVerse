@@ -1,158 +1,171 @@
 import 'package:flutter/material.dart';
 import 'auth_page.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
+
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      precacheImage(const AssetImage('assets/logo/logo.png'), context);
+    });
+  }
+
+  void _navigateToAuth(int initialTab) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => 
+            AuthPage(initialTab: initialTab),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInOut,
+            ),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 400),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF4A148C),
-              Color(0xFF1A0033),
-            ],
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              children: [
-                const Spacer(flex: 2),
-                
-                // App Icon
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.menu_book_rounded,
-                    size: 80,
-                    color: Colors.white,
-                  ),
+      backgroundColor: const Color(0xFF1E1E1E),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          child: Column(
+            children: [
+              const Spacer(flex: 2),
+              
+              // Logo
+              Image.asset(
+                'assets/logo/logo.png',
+                width: 120,
+                height: 120,
+              ),
+              
+              const SizedBox(height: 40),
+              
+              // Title
+              const Text(
+                'Welcome to',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFFF5F1E8),
+                  fontWeight: FontWeight.w300,
+                  letterSpacing: 1.5,
                 ),
-                
-                const SizedBox(height: 32),
-                
-                // Title
-                const Text(
-                  'Welcome to',
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white60,
-                    fontWeight: FontWeight.w300,
-                  ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'NovelVerse',
+                style: TextStyle(
+                  fontSize: 42,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFFB8941F),
+                  letterSpacing: 2.0,
+                  fontFamily: 'Poppins',
                 ),
-                const SizedBox(height: 8),
-                const Text(
-                  'NovelVerse',
-                  style: TextStyle(
-                    fontSize: 44,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 1.2,
-                  ),
+              ),
+              const SizedBox(height: 16),
+              
+              // Subtitle
+              Text(
+                'Discover amazing stories and novels\nfrom around the world',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: const Color(0xFFF5F1E8).withOpacity(0.7),
+                  height: 1.6,
+                  letterSpacing: 0.3,
                 ),
-                const SizedBox(height: 12),
-                
-                // Subtitle
-                const Text(
-                  'Discover amazing stories and novels\nfrom around the world',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white60,
-                    height: 1.5,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                
-                const Spacer(flex: 2),
-                
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AuthPage(initialTab: 0),  // ✅ Login tab
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: const Color(0xFF4A148C),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                textAlign: TextAlign.center,
+              ),
+              
+              const Spacer(flex: 2),
+              
+              // Login Button
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: () => _navigateToAuth(0),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFB8941F),
+                    foregroundColor: const Color(0xFF1E1E1E),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
-                      ),
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.0,
                     ),
                   ),
                 ),
-                
-                const SizedBox(height: 14),
-                
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AuthPage(initialTab: 1),  // ✅ Register tab
-                        ),
-                      );
-                    },
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      side: const BorderSide(color: Colors.white, width: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+              ),
+              
+              const SizedBox(height: 16),
+              
+              // Create Account Button
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: OutlinedButton(
+                  onPressed: () => _navigateToAuth(1),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color(0xFFB8941F),
+                    side: const BorderSide(
+                      color: Color(0xFFB8941F),
+                      width: 1.5,
                     ),
-                    child: const Text(
-                      'Create Account',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
-                      ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'Create Account',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.0,
                     ),
                   ),
                 ),
-                
-                const Spacer(flex: 1),
-                
-                // Footer
-                const Text(
-                  'By continuing, you agree to our Terms of Service and Privacy Policy',
+              ),
+              
+              const Spacer(flex: 1),
+              
+              // Footer
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: Text(
+                  'By continuing, you agree to our Terms of Service\nand Privacy Policy',
                   style: TextStyle(
                     fontSize: 11,
-                    color: Colors.white38,
+                    color: const Color(0xFFF5F1E8).withOpacity(0.3),
+                    height: 1.4,
+                    letterSpacing: 0.3,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                
-                const SizedBox(height: 20),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

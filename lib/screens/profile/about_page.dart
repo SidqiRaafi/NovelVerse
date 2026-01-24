@@ -6,24 +6,22 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF5F1E8),
       body: CustomScrollView(
         slivers: [
+          // Header
           SliverAppBar(
+            automaticallyImplyLeading: false,
             expandedHeight: 150,
             pinned: true,
             floating: false,
             elevation: 0,
-            backgroundColor: Colors.white,
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
-            ),
+            backgroundColor: const Color(0xFFF5F1E8),
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
                 'About',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFF2D2D2D),
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                 ),
@@ -35,8 +33,8 @@ class AboutPage extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xFF7C3AED),
-                      Color(0xFF9F67FF),
+                      Color(0xFFD4AF37),
+                      Color(0xFFD4AF37),
                     ],
                   ),
                   borderRadius: BorderRadius.only(
@@ -49,15 +47,10 @@ class AboutPage extends StatelessWidget {
                     width: 70,
                     height: 70,
                     margin: const EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 2),
-                    ),
                     child: const Icon(
                       Icons.info_outline_rounded,
-                      size: 35,
-                      color: Colors.white,
+                      size: 70,
+                      color: Color(0xFFF5F1E8),
                     ),
                   ),
                 ),
@@ -65,36 +58,15 @@ class AboutPage extends StatelessWidget {
             ),
           ),
 
-          // Main content
+          // Main content - FIXED: used 'sliver' instead of 'slivers'
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 80),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                const Text(
-                  'NovelVerse',
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF7C3AED),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
 
                 // About Card
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.08),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
+                _buildContentCard(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -103,12 +75,12 @@ class AboutPage extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF7C3AED).withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(8),
+                              color: const Color(0xFFB8941F).withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Icon(
                               Icons.book_rounded,
-                              color: Color(0xFF7C3AED),
+                              color: Color(0xFFB8941F),
                               size: 24,
                             ),
                           ),
@@ -118,17 +90,17 @@ class AboutPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              color: Color(0xFF333333),
+                              color: Color(0xFF2D2D2D),
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 12),
-                      Text(
+                      const Text(
                         'NovelVerse is your personal book tracking companion. Keep track of novels you want to read, are reading, or have finished. Organize your reading list and never forget a great book recommendation again!',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.grey[700],
+                          color: Color(0xFF6B5B4B),
                           height: 1.5,
                         ),
                       ),
@@ -146,14 +118,21 @@ class AboutPage extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        const Color(0xFF7C3AED).withOpacity(0.05),
+                        const Color(0xFFB8941F).withOpacity(0.05),
                         Colors.white,
                       ],
                     ),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: const Color(0xFF7C3AED).withOpacity(0.1),
+                      color: const Color(0xFFB8941F).withOpacity(0.2),
                     ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFFB8941F).withOpacity(0.05),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,15 +142,15 @@ class AboutPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF7C3AED),
+                          color: Color(0xFFB8941F),
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text(
+                      const Text(
                         'To help readers organize their personal book collections and keep track of their reading journey. A simple, beautiful tool for book lovers to manage their reading lists.',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.grey[700],
+                          color: Color(0xFF6B5B4B),
                           height: 1.5,
                         ),
                       ),
@@ -181,13 +160,12 @@ class AboutPage extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
-                // Features Title
                 const Text(
                   'Features',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF333333),
+                    color: Color(0xFF2D2D2D),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -202,7 +180,6 @@ class AboutPage extends StatelessWidget {
                             icon: Icons.search_rounded,
                             title: 'Smart Search',
                             subtitle: 'Find your books',
-                            color: const Color(0xFF7C3AED),
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -211,7 +188,6 @@ class AboutPage extends StatelessWidget {
                             icon: Icons.add_circle_outline_rounded,
                             title: 'Add Novel',
                             subtitle: 'Track new books',
-                            color: const Color(0xFF10B981),
                           ),
                         ),
                       ],
@@ -224,7 +200,6 @@ class AboutPage extends StatelessWidget {
                             icon: Icons.edit_rounded,
                             title: 'Edit Novel',
                             subtitle: 'Update details',
-                            color: const Color(0xFFF59E0B),
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -233,7 +208,6 @@ class AboutPage extends StatelessWidget {
                             icon: Icons.delete_outline_rounded,
                             title: 'Delete Novel',
                             subtitle: 'Remove books',
-                            color: const Color(0xFFEF4444),
                           ),
                         ),
                       ],
@@ -243,13 +217,12 @@ class AboutPage extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
-                // Team Members
                 const Text(
                   'Our Team',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF333333),
+                    color: Color(0xFF2D2D2D),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -261,7 +234,6 @@ class AboutPage extends StatelessWidget {
                       nim: '23552011395',
                       role: 'Lead Developer & Maintainer',
                       icon: Icons.code_rounded,
-                      color: const Color(0xFF7C3AED),
                     ),
                     const SizedBox(height: 12),
                     _buildTeamMemberCard(
@@ -269,7 +241,6 @@ class AboutPage extends StatelessWidget {
                       nim: '23552011302',
                       role: 'Auth Developer',
                       icon: Icons.web_rounded,
-                      color: const Color(0xFFEC4899),
                     ),
                     const SizedBox(height: 12),
                     _buildTeamMemberCard(
@@ -277,7 +248,6 @@ class AboutPage extends StatelessWidget {
                       nim: '23552011303',
                       role: 'Developer',
                       icon: Icons.storage_rounded,
-                      color: const Color(0xFF10B981),
                     ),
                     const SizedBox(height: 12),
                     _buildTeamMemberCard(
@@ -285,26 +255,13 @@ class AboutPage extends StatelessWidget {
                       nim: '23552011430',
                       role: 'Developer',
                       icon: Icons.palette_rounded,
-                      color: const Color(0xFFF59E0B),
                     ),
                   ],
                 ),
 
                 const SizedBox(height: 24),
 
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.08),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
+                _buildContentCard(
                   child: Column(
                     children: [
                       _buildInfoRow(
@@ -330,31 +287,32 @@ class AboutPage extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
+                // Footer
                 Center(
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Made with ❤️ for book lovers',
                         style: TextStyle(
                           fontSize: 13,
-                          color: Colors.grey[600],
+                          color: Color(0xFF6B5B4B),
                           fontStyle: FontStyle.italic,
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Text(
+                      const Text(
                         'Version 1.0.0 • Built with Flutter',
                         style: TextStyle(
                           fontSize: 11,
-                          color: Colors.grey[500],
+                          color: Color(0xFF6B5B4B),
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Text(
+                      const Text(
                         '© 2026 NovelVerse Team',
                         style: TextStyle(
                           fontSize: 10,
-                          color: Colors.grey[400],
+                          color: Color(0xFF6B5B4B),
                         ),
                       ),
                     ],
@@ -368,23 +326,43 @@ class AboutPage extends StatelessWidget {
     );
   }
 
+  // Helper Widgets
+  Widget _buildContentCard({required Widget child}) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFB8941F).withOpacity(0.2)),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFB8941F).withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+
   Widget _buildFeatureCard({
     required IconData icon,
     required String title,
     required String subtitle,
-    required Color color,
   }) {
+    const color = Color(0xFFB8941F);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(color: color.withOpacity(0.2)),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
+            color: color.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -396,26 +374,26 @@ class AboutPage extends StatelessWidget {
             height: 44,
             decoration: BoxDecoration(
               color: color.withOpacity(0.1),
-              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(icon, color: color, size: 22),
           ),
           const SizedBox(height: 10),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: Colors.grey[800],
+              color: Color(0xFF2D2D2D),
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 3),
           Text(
             subtitle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 11,
-              color: Colors.grey[600],
+              color: Color(0xFF6B5B4B),
             ),
             textAlign: TextAlign.center,
           ),
@@ -429,8 +407,8 @@ class AboutPage extends StatelessWidget {
     required String nim,
     required String role,
     required IconData icon,
-    required Color color,
   }) {
+    const color = Color(0xFFB8941F);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -439,9 +417,9 @@ class AboutPage extends StatelessWidget {
         border: Border.all(color: color.withOpacity(0.2)),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
+            color: color.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -463,27 +441,27 @@ class AboutPage extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
-                    color: Colors.grey[800],
+                    color: Color(0xFF2D2D2D),
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   nim,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
-                    color: Colors.grey[500],
+                    color: Color(0xFF6B5B4B),
                     fontFamily: 'monospace',
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   role,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 13,
-                    color: Colors.grey[600],
+                    color: Color(0xFF6B5B4B),
                   ),
                 ),
               ],
@@ -501,23 +479,23 @@ class AboutPage extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Icon(icon, size: 18, color: Colors.grey[600]),
+        Icon(icon, size: 18, color: const Color(0xFF6B5B4B)),
         const SizedBox(width: 10),
         Expanded(
           child: Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
-              color: Colors.grey[700],
+              color: Color(0xFF6B5B4B),
               fontWeight: FontWeight.w500,
             ),
           ),
         ),
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 13,
-            color: Colors.grey[800],
+            color: Color(0xFF2D2D2D),
             fontWeight: FontWeight.w600,
           ),
         ),

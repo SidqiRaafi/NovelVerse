@@ -27,7 +27,6 @@ class _EditNovelPageState extends State<EditNovelPage> {
   @override
   void initState() {
     super.initState();
-    // Pre-fill dengan data existing
     _titleController = TextEditingController(text: widget.novel.title);
     _authorController = TextEditingController(text: widget.novel.author);
     _genreController = TextEditingController(text: widget.novel.genre);
@@ -68,18 +67,20 @@ class _EditNovelPageState extends State<EditNovelPage> {
       await _firestoreService.updateNovel(updatedNovel);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Novel updated successfully!'),
-          backgroundColor: Colors.green,
+          backgroundColor: Color(0xFF2E7D32),
+          behavior: SnackBarBehavior.floating,
         ),
       );
 
-      Navigator.pop(context); // Kembali ke Detail Page
+      Navigator.pop(context);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error: $e'),
-          backgroundColor: Colors.red,
+          backgroundColor: const Color(0xFFC62828),
+          behavior: SnackBarBehavior.floating,
         ),
       );
     } finally {
@@ -90,30 +91,45 @@ class _EditNovelPageState extends State<EditNovelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F1E8),
       appBar: AppBar(
-        title: Text('Edit Novel'),
+        backgroundColor: const Color(0xFFF5F1E8),
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_rounded,
+            color: Color(0xFF2D2D2D),
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          'Edit Novel',
+          style: TextStyle(
+            color: Color(0xFF2D2D2D),
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: CircularProgressIndicator(
+                color: Color(0xFFB8941F),
+              ),
+            )
           : SingleChildScrollView(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(20),
               child: Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Title
-                    TextFormField(
+                    _buildTextField(
                       controller: _titleController,
-                      decoration: InputDecoration(
-                        labelText: 'Title',
-                        hintText: 'Enter novel title',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        prefixIcon: Icon(Icons.book),
-                      ),
+                      label: 'Title',
+                      hint: 'Enter novel title',
+                      icon: Icons.book_rounded,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return 'Title is required';
@@ -121,19 +137,14 @@ class _EditNovelPageState extends State<EditNovelPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // Author
-                    TextFormField(
+                    _buildTextField(
                       controller: _authorController,
-                      decoration: InputDecoration(
-                        labelText: 'Author',
-                        hintText: 'Enter author name',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        prefixIcon: Icon(Icons.person),
-                      ),
+                      label: 'Author',
+                      hint: 'Enter author name',
+                      icon: Icons.person_rounded,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return 'Author is required';
@@ -141,19 +152,14 @@ class _EditNovelPageState extends State<EditNovelPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // Genre
-                    TextFormField(
+                    _buildTextField(
                       controller: _genreController,
-                      decoration: InputDecoration(
-                        labelText: 'Genre',
-                        hintText: 'e.g. Fantasy, Mystery, Romance',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        prefixIcon: Icon(Icons.category),
-                      ),
+                      label: 'Genre',
+                      hint: 'e.g. Fantasy, Mystery, Romance',
+                      icon: Icons.category_rounded,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return 'Genre is required';
@@ -161,20 +167,14 @@ class _EditNovelPageState extends State<EditNovelPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // Synopsis
-                    TextFormField(
+                    _buildTextField(
                       controller: _synopsisController,
-                      decoration: InputDecoration(
-                        labelText: 'Synopsis',
-                        hintText: 'Enter novel synopsis',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        alignLabelWithHint: true,
-                      ),
-                      maxLines: 5,
+                      label: 'Synopsis',
+                      hint: 'Enter novel synopsis',
+                      icon: Icons.description_rounded,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return 'Synopsis is required';
@@ -182,19 +182,15 @@ class _EditNovelPageState extends State<EditNovelPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // Cover URL
-                    TextFormField(
+                    _buildTextField(
                       controller: _coverUrlController,
-                      decoration: InputDecoration(
-                        labelText: 'Cover Image URL',
-                        hintText: 'https://example.com/cover.jpg',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        prefixIcon: Icon(Icons.image),
-                      ),
+                      label: 'Cover Image URL',
+                      hint: 'https://example.com/cover.jpg',
+                      icon: Icons.image_rounded,
+                      keyboardType: TextInputType.url,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return 'Cover URL is required';
@@ -205,20 +201,15 @@ class _EditNovelPageState extends State<EditNovelPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // Rating
-                    TextFormField(
+                    _buildTextField(
                       controller: _ratingController,
-                      decoration: InputDecoration(
-                        labelText: 'Rating',
-                        hintText: '0.0 - 5.0',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        prefixIcon: Icon(Icons.star),
-                      ),
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
+                      label: 'Rating',
+                      hint: '0.0 - 5.0',
+                      icon: Icons.star_rounded,
+                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return 'Rating is required';
@@ -230,23 +221,37 @@ class _EditNovelPageState extends State<EditNovelPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 32),
+                    const SizedBox(height: 32),
 
                     // Update Button
                     SizedBox(
                       width: double.infinity,
-                      height: 50,
-                      child: ElevatedButton.icon(
-                        onPressed: _updateNovel,
-                        icon: Icon(Icons.save),
-                        label: Text(
-                          'Update Novel',
-                          style: TextStyle(fontSize: 16),
-                        ),
+                      height: 56,
+                      child: ElevatedButton(
+                        onPressed: _isLoading ? null : _updateNovel,
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFB8941F),
+                          foregroundColor: const Color(0xFF1E1E1E),
+                          disabledBackgroundColor: const Color(0xFFB8941F).withOpacity(0.5),
+                          elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.save_rounded, size: 20),
+                            SizedBox(width: 8),
+                            Text(
+                              'Update Novel',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -254,6 +259,74 @@ class _EditNovelPageState extends State<EditNovelPage> {
                 ),
               ),
             ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required String hint,
+    required IconData icon,
+    TextInputType? keyboardType,
+    String? Function(String?)? validator,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF2D2D2D),
+            letterSpacing: 0.3,
+          ),
+        ),
+        const SizedBox(height: 8),
+        TextFormField(
+          controller: controller,
+          keyboardType: keyboardType,
+          style: const TextStyle(
+            color: Color(0xFF2D2D2D),
+            fontSize: 15,
+          ),
+          decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: TextStyle(
+              color: const Color(0xFF2D2D2D).withOpacity(0.4),
+            ),
+            prefixIcon: Icon(
+              icon,
+              color: const Color(0xFFB8941F),
+              size: 20,
+            ),
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFFD4C5B0)),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFFD4C5B0)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFFB8941F), width: 1.5),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFFC62828), width: 1.5),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFFC62828), width: 1.5),
+            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          ),
+          validator: validator,
+        ),
+      ],
     );
   }
 }

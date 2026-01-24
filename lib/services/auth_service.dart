@@ -19,7 +19,6 @@ class AuthService {
       );
       return result.user;
     } on FirebaseAuthException catch (e) {
-      // Handle Auth errors
       switch (e.code) {
         case 'weak-password':
           throw 'Password is too weak';
@@ -47,7 +46,6 @@ class AuthService {
       );
       return result.user;
     } on FirebaseAuthException catch (e) {
-      // Handle Auth errors
       switch (e.code) {
         case 'user-not-found':
           throw 'No user found with this email';
@@ -67,7 +65,12 @@ class AuthService {
     }
   }
 
-  // LOGOUT
+  // LOGOUT (alias for signOut)
+  Future<void> logout() async {
+    await signOut();
+  }
+
+  // SIGN OUT
   Future<void> signOut() async {
     try {
       await _auth.signOut();
