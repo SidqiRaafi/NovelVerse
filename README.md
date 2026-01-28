@@ -280,7 +280,7 @@ Meet the team behind NovelVerse:
         <img src="https://github.com/Faichese.png" width="100px;" alt="Faisal"/><br />
         <sub><b>Faisal</b></sub>
       </a><br />
-      <sub>23552011303</sub><br />
+      <sub>23552012015</sub><br />
       <sub>User & Profile Firebase Integration</sub>
     </td>
     <td align="center">
