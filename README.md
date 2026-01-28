@@ -167,23 +167,23 @@ The APK will be generated in `build/app/outputs/flutter-apk/`
 ```
 android/
 ├── app/
-│   └── google-services.json        //add manual dari WA    ‼️‼️
+│   └── google-services.json        //ask maintainer  ✔️
 │
 assets/
 ├── logo/
-│   └── logo.png                    //app logo      ✔️
+│   └── logo.png                    //app logo        ✔️
 │
 ├── demo/
-│   ├── welcome.png                 //showcase welcome screen       ❌
-│   ├── login.png                   //showcase login screen         ❌
-│   ├── register.png                //showcase register screen      ❌
-│   ├── home1.png                   //showcase home screen          ❌
-│   ├── home2.png                   //showcase novel scren          ❌
-│   ├── home3.png                   //showcase add novel screen     ❌
-│   ├── home4.png                   //showcase edit novel screen    ❌
-│   ├── home5.png                   //showcase delete novel screen  ❌
-│   ├── profile.png                 //showcase profile screen       ❌
-│   └── about.png                   //showcase about app screen     ❌
+│   ├── welcome.png                 //showcase welcome screen       ✔️
+│   ├── login.png                   //showcase login screen         ✔️
+│   ├── register.png                //showcase register screen      ✔️
+│   ├── home1.png                   //showcase home screen          ✔️
+│   ├── home2.png                   //showcase novel scren          ✔️
+│   ├── home3.png                   //showcase add novel screen     ✔️
+│   ├── home4.png                   //showcase edit novel screen    ✔️
+│   ├── home5.png                   //showcase delete novel screen  ✔️
+│   ├── profile.png                 //showcase profile screen       ✔️
+│   └── about.png                   //showcase about app screen     ✔️
 │
 lib/
 ├── models/
@@ -214,7 +214,7 @@ lib/
 ├── widgets/
 │   └── auth_wrapper.dart           //Persistent Login System               ✔️
 │
-├── firebase_options.dart           //config firebase add manual dari WA    ‼️‼️
+├── firebase_options.dart           //ask maintainer                        ✔️
 └── main.dart                       //entry point                           ✔️
 ```
 
