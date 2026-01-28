@@ -276,7 +276,7 @@ Meet the team behind NovelVerse:
         <sub><b>Rayhan Khadafi</b></sub>
       </a><br />
       <sub>23552011302</sub><br />
-      <sub>Auth Developer</sub>
+      <sub>Authentication & Logo Designer</sub>
     </td>
     <td align="center">
       <a href="https://github.com/Faichese">
@@ -284,7 +284,7 @@ Meet the team behind NovelVerse:
         <sub><b>Faisal</b></sub>
       </a><br />
       <sub>23552011303</sub><br />
-      <sub>Developer</sub>
+      <sub>User & Profile Firebase Integration</sub>
     </td>
     <td align="center">
       <a href="https://github.com/rynrifn">
@@ -292,7 +292,7 @@ Meet the team behind NovelVerse:
         <sub><b>Rifki Febrian</b></sub>
       </a><br />
       <sub>23552011430</sub><br />
-      <sub>Developer</sub>
+      <sub>Splashscreen & About Implementation</sub>
     </td>
   </tr>
 </table>
