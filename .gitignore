@@ -69,3 +69,11 @@ coverage/
 !**/ios/**/default.mode2v3
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
+
+# Android related
+key.properties
+**/*.keystore
+**/*.jks
+upload-keystore.jks
+**/upload-keystore.jks
+android/key.properties
