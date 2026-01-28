@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -16,7 +17,12 @@ class AboutPage extends StatelessWidget {
             pinned: true,
             floating: false,
             elevation: 0,
-            backgroundColor: const Color(0xFFF5F1E8),
+            backgroundColor: const Color(0xFFD4AF37),
+            systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Color(0xFFD4AF37),
+              statusBarIconBrightness: Brightness.dark,
+              statusBarBrightness: Brightness.light,
+            ),
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
                 'About',
@@ -32,10 +38,7 @@ class AboutPage extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFFD4AF37),
-                      Color(0xFFD4AF37),
-                    ],
+                    colors: [Color(0xFFD4AF37), Color(0xFFD4AF37)],
                   ),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(24),
@@ -111,41 +114,36 @@ class AboutPage extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 // Vision Card
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color(0xFFB8941F).withOpacity(0.05),
-                        Colors.white,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: const Color(0xFFB8941F).withOpacity(0.2),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFFB8941F).withOpacity(0.05),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
+                _buildContentCard(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Our Vision',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFFB8941F),
-                        ),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFB8941F).withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Icon(
+                              Icons.lightbulb_outline_rounded, // Vision icon
+                              color: Color(0xFFB8941F),
+                              size: 24,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          const Text(
+                            'Our Vision',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF2D2D2D),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 12),
                       const Text(
                         'To help readers organize their personal book collections and keep track of their reading journey. A simple, beautiful tool for book lovers to manage their reading lists.',
                         style: TextStyle(
@@ -157,7 +155,6 @@ class AboutPage extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 24),
 
                 const Text(
@@ -239,7 +236,7 @@ class AboutPage extends StatelessWidget {
                     _buildTeamMemberCard(
                       name: 'Rayhan Khadafi',
                       nim: '23552011302',
-                      role: 'authentication & Design',
+                      role: 'Authentication & Logo Designer',
                       icon: Icons.design_services_rounded,
                     ),
                     const SizedBox(height: 12),
@@ -253,7 +250,7 @@ class AboutPage extends StatelessWidget {
                     _buildTeamMemberCard(
                       name: 'Rifki Febrian',
                       nim: '23552011430',
-                      role: 'Splash Screen & About ',
+                      role: 'Splash Screen & About Implementation',
                       icon: Icons.mobile_friendly_rounded,
                     ),
                   ],
@@ -391,10 +388,7 @@ class AboutPage extends StatelessWidget {
           const SizedBox(height: 3),
           Text(
             subtitle,
-            style: const TextStyle(
-              fontSize: 11,
-              color: Color(0xFF6B5B4B),
-            ),
+            style: const TextStyle(fontSize: 11, color: Color(0xFF6B5B4B)),
             textAlign: TextAlign.center,
           ),
         ],

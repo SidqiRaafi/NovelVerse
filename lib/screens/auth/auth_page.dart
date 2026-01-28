@@ -205,105 +205,119 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF1E1E1E),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Back button
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: Color(0xFFF5F1E8),
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: const Color(0xFF1E1E1E),
+    body: SafeArea(
+      child: SingleChildScrollView(  // ADD THIS
+        child: ConstrainedBox(  // ADD THIS
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height - 
+                       MediaQuery.of(context).padding.top - 
+                       MediaQuery.of(context).padding.bottom,
+          ),
+          child: IntrinsicHeight(  // ADD THIS
+            child: Column(
+              children: [
+                // Back button
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Color(0xFFF5F1E8),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Title
+                const Text(
+                  'Get Started now',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFFB8941F),
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Text(
+                    'Create an account or log in to explore NovelVerse',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: const Color(0xFFF5F1E8).withOpacity(0.6),
+                      height: 1.4,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Tab Bar
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF2A2A2A),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.all(4),
+                    child: TabBar(
+                      controller: _tabController,
+                      indicator: BoxDecoration(
+                        color: const Color(0xFFB8941F),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      dividerColor: Colors.transparent,
+                      labelColor: const Color(0xFF1E1E1E),
+                      unselectedLabelColor: const Color(0xFFF5F1E8).withOpacity(0.6),
+                      labelStyle: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      tabs: const [
+                        Tab(text: 'Log In'),
+                        Tab(text: 'Sign Up'),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-
-            // Title
-            const Text(
-              'Get Started now',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFFB8941F),
-                letterSpacing: 0.5,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Text(
-                'Create an account or log in to explore NovelVerse',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: const Color(0xFFF5F1E8).withOpacity(0.6),
-                  height: 1.4,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 24),
 
-            // Tab Bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFF2A2A2A),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.all(4),
-                child: TabBar(
-                  controller: _tabController,
-                  indicator: BoxDecoration(
-                    color: const Color(0xFFB8941F),
-                    borderRadius: BorderRadius.circular(10),
+                const SizedBox(height: 24),
+
+                // Forms - REMOVE Expanded, use Flexible instead
+                Flexible(  // CHANGED FROM Expanded
+                  child: SizedBox(
+                    height: 400,  // ADD FIXED HEIGHT
+                    child: PageView(
+                      controller: _pageController,
+                      onPageChanged: (index) {
+                        _tabController.animateTo(index);
+                      },
+                      children: [
+                        _buildLoginForm(),
+                        _buildRegisterForm(),
+                      ],
+                    ),
                   ),
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  labelColor: const Color(0xFF1E1E1E),
-                  unselectedLabelColor: const Color(0xFFF5F1E8).withOpacity(0.6),
-                  labelStyle: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  tabs: const [
-                    Tab(text: 'Log In'),
-                    Tab(text: 'Sign Up'),
-                  ],
                 ),
-              ),
+              ],
             ),
-
-            const SizedBox(height: 24),
-
-            // Forms
-            Expanded(
-              child: PageView(
-                controller: _pageController,
-                onPageChanged: (index) {
-                  _tabController.animateTo(index);
-                },
-                children: [
-                  _buildLoginForm(),
-                  _buildRegisterForm(),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   // Login Form
   Widget _buildLoginForm() {
