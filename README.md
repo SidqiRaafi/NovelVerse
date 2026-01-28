@@ -48,6 +48,7 @@ NovelVerse is a collaborative novel listing application that brings book enthusi
 ### Screenshots
 
 <div align="center">
+  <img src="assets/demo/splash.png" alt="Welcome Screen" width="200"/>
   <img src="assets/demo/welcome.png" alt="Welcome Screen" width="200"/>
   <img src="assets/demo/login.png" alt="Login Screen" width="200"/>
   <img src="assets/demo/register.png" alt="Register Screen" width="200"/>
