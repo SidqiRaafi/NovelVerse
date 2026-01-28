@@ -61,7 +61,6 @@ class AboutPage extends StatelessWidget {
             ),
           ),
 
-          // Main content - FIXED: used 'sliver' instead of 'slivers'
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 80),
             sliver: SliverList(
@@ -127,7 +126,7 @@ class AboutPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Icon(
-                              Icons.lightbulb_outline_rounded, // Vision icon
+                              Icons.lightbulb_outline_rounded,
                               color: Color(0xFFB8941F),
                               size: 24,
                             ),
