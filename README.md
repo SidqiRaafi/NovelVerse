@@ -317,8 +317,8 @@ Kenali tim di balik NovelVerse:
     </td>
     <td align="center">
       <a href="https://github.com/Faichese">
-        <img src="https://github.com/Faichese.png" width="100px;" alt="Faisal"/><br />
-        <sub><b>Faisal</b></sub>
+        <img src="https://github.com/Faichese.png" width="100px;" alt="Faisal M"/><br />
+        <sub><b>Faisal M</b></sub>
       </a><br />
       <sub>23552012015</sub><br />
       <sub>User & Profile Firebase Integration</sub>
