@@ -325,7 +325,7 @@ Meet the team behind NovelVerse:
         <img src="https://github.com/Parzival-Desu.png" width="100px;" alt="Rayhan Khadafi"/><br />
         <sub><b>Rayhan Khadafi</b></sub>
       </a><br />
-      <sub>23552011302</sub><br />
+      <sub>23552011002</sub><br />
       <sub>Authentication & Logo Designer</sub>
     </td>
     <td align="center">
