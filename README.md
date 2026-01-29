@@ -36,8 +36,8 @@ NovelVerse is a collaborative novel listing application that brings book enthusi
   - Title, Author, Genre
   - Cover URL for visual appeal
   - Ratings and Synopsis
-- 🔍 **Search Functionality** - Quickly find novels from the listing
-- 👤 **Profile Management** - View account details, verification status, and logout
+- 🔍 **Search Functionality** - Quickly find novels from the listing by title, author, or genre
+- 👤 **Profile Management** - View account details, verification status, statistics, and logout
 - ℹ️ **About Page** - Learn about the developers and the app
 - 🌐 **Shared Database** - All users contribute to and view the same novel collection
 - 📱 **Modern UI** - Clean and intuitive interface built with Flutter
@@ -110,6 +110,7 @@ Download the latest APK from the [Releases](https://github.com/SidqiRaafi/NovelV
 - [Dart SDK](https://dart.dev/get-dart) (Comes with Flutter)
 - Android Studio / VS Code (or your preferred IDE)
 - [Firebase Account](https://firebase.google.com/)
+- [Firebase CLI](https://firebase.google.com/docs/cli) (for generating firebase_options.dart)
 - Git
 
 ### Firebase Setup
@@ -119,12 +120,15 @@ Download the latest APK from the [Releases](https://github.com/SidqiRaafi/NovelV
    - Create a new project or use an existing one
 
 2. **Enable Authentication**
-   - In Firebase Console, go to Authentication
-   - Enable Email/Password sign-in method
+   - In Firebase Console, go to **Authentication**
+   - Click "Get Started"
+   - Enable **Email/Password** sign-in method
 
 3. **Setup Firestore Database**
-   - Go to Firestore Database
-   - Create a database (start in production mode or test mode)
+   - Go to **Firestore Database**
+   - Click "Create database"
+   - Choose **Start in production mode** or **Test mode** (for development)
+   - Select a region closest to you
    - Create a collection named `novels` with the following fields:
      ```
      - author (string)
@@ -135,10 +139,23 @@ Download the latest APK from the [Releases](https://github.com/SidqiRaafi/NovelV
      - title (string)
      ```
 
-4. **Download Configuration File**
-   - Register your Android app in Firebase project settings
+4. **Download Configuration Files**
+   - In Project Settings, click "Add app" and select **Android**
+   - Enter package name: `com.sawitkiawan.novelverse`
    - Download `google-services.json`
    - Place it in `android/app/` directory
+
+5. **Generate Firebase Options**
+   ```bash
+   # Install FlutterFire CLI
+   dart pub global activate flutterfire_cli
+   
+   # Configure Firebase for your project
+   flutterfire configure
+   ```
+   - Select your Firebase project
+   - Choose platforms (at minimum: Android)
+   - This will generate `lib/firebase_options.dart` automatically
 
 ### Local Setup
 
@@ -150,9 +167,11 @@ cd NovelVerse
 # Install dependencies
 flutter pub get
 
-# Run the app
+# Run the app (make sure you've completed Firebase setup first)
 flutter run
 ```
+
+> **⚠️ Important:** The app won't run without proper Firebase configuration. Make sure you've completed all Firebase setup steps and have both `google-services.json` and `firebase_options.dart` in place.
 
 ### Build APK
 
@@ -166,6 +185,13 @@ flutter build apk --split-per-abi
 
 The APK will be generated in `build/app/outputs/flutter-apk/`
 
+### Configuration Files (Not in Repository)
+
+These files contain sensitive configuration and are `.gitignore`d:
+- `android/app/google-services.json` - Firebase Android configuration
+- `lib/firebase_options.dart` - Firebase initialization options
+
+**Note:** Contact the maintainer if you need access to the existing Firebase project for development purposes.
 ## 🗂️ Project Structure
 
 ```
@@ -182,7 +208,7 @@ assets/
 │   ├── login.png                   //showcase login screen         ✔️
 │   ├── register.png                //showcase register screen      ✔️
 │   ├── home1.png                   //showcase home screen          ✔️
-│   ├── home2.png                   //showcase novel scren          ✔️
+│   ├── home2.png                   //showcase novel screen          ✔️
 │   ├── home3.png                   //showcase add novel screen     ✔️
 │   ├── home4.png                   //showcase edit novel screen    ✔️
 │   ├── home5.png                   //showcase delete novel screen  ✔️
@@ -196,23 +222,23 @@ lib/
 │
 ├── screens/
 │   ├── auth/
-│   │   ├── auth_page.dart          //form login dan register   ✔️
-│   │   └── welcome_page.dart       //pilih login register      ✔️
+│   │   ├── auth_page.dart          //form login dan register     ✔️
+│   │   └── welcome_page.dart       //pilih login register        ✔️
 │   │
 │   ├── home/
-│   │   ├── add_novel_page.dart     //form tambah novel         ✔️
-│   │   ├── detail_page.dart        //detail novel              ✔️
-│   │   ├── edit_novel_page.dart    //edit novel                ✔️
-│   │   ├── list_page.dart          //list novel dan search     ✔️
-│   │   └── main_page.dart          //navigasi                  ✔️
+│   │   ├── add_novel_page.dart     //form tambah novel           ✔️
+│   │   ├── detail_page.dart        //detail novel                ✔️
+│   │   ├── edit_novel_page.dart    //edit novel                  ✔️
+│   │   ├── list_page.dart          //list novel dan search       ✔️
+│   │   └── main_page.dart          //navigasi                    ✔️
 │   │
 │   ├── profile/
-│   │    └── about_page.dart         //info app dan dev          ✔️
-│   │    └── profile_page.dart       //tentang user dan logout   ✔️
-│   └── splash_screen.dart           //splash screen             ✔️
+│   │    └── about_page.dart         //info app dan dev           ✔️
+│   │    └── profile_page.dart       //tentang user dan logout    ✔️
+│   └── splash_screen.dart           //splash screen              ✔️
 │
 ├── services/
-│   ├── auth_service.dart           //Firebase Auth login dan Register      ✔️
+│   ├── auth_service.dart           //Firebase Auth Login dan Register      ✔️
 │   └── firestore_service.dart      //CRUD Novel                            ✔️
 │
 ├── widgets/
