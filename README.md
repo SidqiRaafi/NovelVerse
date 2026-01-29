@@ -1,9 +1,11 @@
+**Bahasa:** [🇮🇩 Indonesian](README.md) | [🇺🇸 English](README.en.md)
+
 <div align="center">
-  <img src="assets/logo/logo.png" alt="NovelVerse Logo" width="200"/>
+  <img src="assets/logo/logo.png" alt="Logo NovelVerse" width="200"/>
   
   # NovelVerse
   
-  **Discover and share your favorite novels**
+  **Lacak Buku buku Favorit Anda**
   
   [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
   [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)
@@ -18,118 +20,118 @@
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/SidqiRaafi/NovelVerse/pulls)
   [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/SidqiRaafi/NovelVerse/graphs/commit-activity)
   
-  [Features](#features) • [Demo](#demo) • [Download](#download) • [Development](#development) • [Contributing](#contributing) • [License](#license)
+  [Fitur](#fitur) • [Demo](#demo) • [Unduh](#unduh) • [Pengembangan](#pengembangan) • [Kontribusi](#kontribusi) • [Lisensi](#lisensi)
   
 </div>
 
 ---
 
-## 📖 About
+## 📖 Tentang
 
-NovelVerse is a collaborative novel listing application that brings book enthusiasts together. Built with Flutter and Firebase, it provides a shared platform where users can add, discover, and manage their favorite novels. Different accounts, same listing - making it perfect for communities who want to curate and share their reading recommendations.
+NovelVerse adalah aplikasi pelacak buku kolaboratif yang dibangun dengan Flutter dan Firebase. NovelVerse menyediakan platform yang dimana user bisa menemukan, menambahkan, dan mengelola buku favoritnya. NovelVerse melakukan sinkronisasi agar semua user memiliki satu daftar yang sama, membuat NovelVerse sangat cocok untuk komunitas yang ingin berbagi dan merekomendasikan buku favorit mereka.
 
-<a name="features"></a>
-## ✨ Features
+<a name="fitur"></a>
+## ✨ Fitur
 
-- 🔐 **User Authentication** - Secure login and registration system
-- 📚 **Novel Management** - Add, edit, and delete novels with detailed information
-  - Title, Author, Genre
-  - Cover URL for visual appeal
-  - Ratings and Synopsis
-- 🔍 **Search Functionality** - Quickly find novels from the listing by title, author, or genre
-- 👤 **Profile Management** - View account details, verification status, statistics, and logout
-- ℹ️ **About Page** - Learn about the developers and the app
-- 🌐 **Shared Database** - All users contribute to and view the same novel collection
-- 📱 **Modern UI** - Clean and intuitive interface built with Flutter
+- 🔐 **Autentikasi Pengguna** - Sistem login dan registrasi yang aman
+- 📚 **Manajemen Novel** - Tambah, edit, dan hapus novel dengan informasi detail
+  - Judul, Penulis, Genre
+  - URL Cover untuk tampilan visual
+  - Rating dan Sinopsis
+- 🔍 **Fungsi Pencarian** - Temukan novel dengan cepat di koleksi Anda berdasarkan judul, penulis, atau genre
+- 👤 **Manajemen Profil** - Lihat detail akun, statistik, dan logout
+- ℹ️ **Halaman Tentang** - Pelajari tentang pengembang dan aplikasi
+- 🏛️ **Perpustakaan Bersama** - Setiap pengguna bisa membaca buku rekomendasi dari user lainnya
+- 📱 **UI Modern** - Antarmuka yang bersih dan intuitif dengan desain elegan
 
 <a name="demo"></a>
 ## 🎬 Demo
 
-### Screenshots
+### Tangkapan Layar
 
 <div align="center">
-  <img src="assets/demo/splash.png" alt="Welcome Screen" width="200"/>
-  <img src="assets/demo/welcome.png" alt="Welcome Screen" width="200"/>
-  <img src="assets/demo/login.png" alt="Login Screen" width="200"/>
-  <img src="assets/demo/register.png" alt="Register Screen" width="200"/>
+  <img src="assets/demo/splash.png" alt="Layar Splash" width="200"/>
+  <img src="assets/demo/welcome.png" alt="Layar Selamat Datang" width="200"/>
+  <img src="assets/demo/login.png" alt="Layar Login" width="200"/>
+  <img src="assets/demo/register.png" alt="Layar Registrasi" width="200"/>
 </div>
 
 <div align="center">
-  <img src="assets/demo/home1.png" alt="Home Screen" width="200"/>
-  <img src="assets/demo/home2.png" alt="Novel Screen" width="200"/>
-  <img src="assets/demo/home3.png" alt="Add Novel Screen" width="200"/>
+  <img src="assets/demo/home1.png" alt="Layar Beranda" width="200"/>
+  <img src="assets/demo/home2.png" alt="Layar Detail Novel" width="200"/>
+  <img src="assets/demo/home3.png" alt="Layar Tambah Novel" width="200"/>
 </div>
 
 <div align="center">
-  <img src="assets/demo/home4.png" alt="Edit Novel Screen" width="200"/>
-  <img src="assets/demo/home5.png" alt="Delete Novel Screen" width="200"/>
-  <img src="assets/demo/profile.png" alt="Profile Screen" width="200"/>
-  <img src="assets/demo/about.png" alt="About Screen" width="200"/>
+  <img src="assets/demo/home4.png" alt="Layar Edit Novel" width="200"/>
+  <img src="assets/demo/home5.png" alt="Layar Hapus Novel" width="200"/>
+  <img src="assets/demo/profile.png" alt="Layar Profil" width="200"/>
+  <img src="assets/demo/about.png" alt="Layar Tentang" width="200"/>
 </div>
 
 ### Video Demo
 
 <div align="center">
   <a href="https://youtu.be/-scBAf0Sv0s">
-    <img src="https://img.youtube.com/vi/-scBAf0Sv0s/maxresdefault.jpg" alt="NovelVerse Demo Video 1" width="80%">
+    <img src="https://img.youtube.com/vi/-scBAf0Sv0s/maxresdefault.jpg" alt="Video Demo NovelVerse 1" width="80%">
   </a>
-  <p><i>🎥 Demo Video 1 - Demo via Windows</i></p>
+  <p><i>🎥 Video Demo 1 - Demo via Windows</i></p>
 </div>
 
 <div align="center">
   <a href="https://youtu.be/-7pl_pC2xR8">
-    <img src="https://img.youtube.com/vi/-7pl_pC2xR8/maxresdefault.jpg" alt="NovelVerse Demo Video 2" width="80%">
+    <img src="https://img.youtube.com/vi/-7pl_pC2xR8/maxresdefault.jpg" alt="Video Demo NovelVerse 2" width="80%">
   </a>
-  <p><i>🎥 Demo Video 2 - Demo Via Android</i></p>
+  <p><i>🎥 Video Demo 2 - Demo Via Android</i></p>
 </div>
 
-<a name="download"></a>
-## 📥 Download
+<a name="unduh"></a>
+## 📥 Unduh
 
-### For Users
+### Untuk Pengguna
 
-Download the latest APK from the [Releases](https://github.com/SidqiRaafi/NovelVerse/releases) page.
+Unduh APK terbaru dari halaman [Releases](https://github.com/SidqiRaafi/NovelVerse/releases).
 
-**Requirements:**
-- Android 8.0 (Oreo) or higher
-- Minimum 50MB free storage
-- Internet connection for Firebase services
+**Persyaratan:**
+- **Versi Android Minimum**: Android 5.0 (API 21) atau lebih tinggi
+- Minimum 50MB penyimpanan kosong
+- Koneksi internet untuk layanan Firebase
 
-**Installation:**
-1. Download the latest `.apk` file from releases
-2. Enable "Install from Unknown Sources" in your Android settings
-3. Open the downloaded APK and follow the installation prompts
-4. Launch NovelVerse and create your account!
+**Instalasi:**
+1. Unduh file `.apk` terbaru dari releases
+2. Aktifkan "Instal dari Sumber Tidak Dikenal" di pengaturan Android Anda
+3. Buka APK yang diunduh dan ikuti petunjuk instalasi
+4. Jalankan NovelVerse dan buat akun Anda!
 
-<a name="development"></a>
-## 🛠️ Development
+<a name="pengembangan"></a>
+## 🛠️ Pengembangan
 
-### Prerequisites
+### Prasyarat
 
-- [Flutter SDK](https://flutter.dev/docs/get-started/install) (Latest stable version as of January 2026)
-- [Dart SDK](https://dart.dev/get-dart) (Comes with Flutter)
-- Android Studio / VS Code (or your preferred IDE)
-- [Firebase Account](https://firebase.google.com/)
-- [Firebase CLI](https://firebase.google.com/docs/cli) (for generating firebase_options.dart)
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) (Versi stabil terbaru per Januari 2026)
+- [Dart SDK](https://dart.dev/get-dart) (Disertakan dengan Flutter)
+- Android Studio / VS Code (atau IDE pilihan Anda)
+- [Akun Firebase](https://firebase.google.com/)
+- [Firebase CLI](https://firebase.google.com/docs/cli) (untuk menghasilkan firebase_options.dart)
 - Git
 
-### Firebase Setup
+### Pengaturan Firebase
 
-1. **Create a Firebase Project**
-   - Go to [Firebase Console](https://console.firebase.google.com/)
-   - Create a new project or use an existing one
+1. **Buat Proyek Firebase**
+   - Kunjungi [Firebase Console](https://console.firebase.google.com/)
+   - Buat proyek baru atau gunakan yang sudah ada
 
-2. **Enable Authentication**
-   - In Firebase Console, go to **Authentication**
-   - Click "Get Started"
-   - Enable **Email/Password** sign-in method
+2. **Aktifkan Autentikasi**
+   - Di Firebase Console, buka **Authentication**
+   - Klik "Get Started"
+   - Aktifkan metode sign-in **Email/Password**
 
-3. **Setup Firestore Database**
-   - Go to **Firestore Database**
-   - Click "Create database"
-   - Choose **Start in production mode** or **Test mode** (for development)
-   - Select a region closest to you
-   - Create a collection named `novels` with the following fields:
+3. **Pengaturan Database Firestore**
+   - Buka **Firestore Database**
+   - Klik "Create database"
+   - Pilih **Start in production mode** atau **Test mode** (untuk pengembangan)
+   - Pilih region terdekat dengan Anda
+   - Buat koleksi bernama `novels` dengan field berikut:
      ```
      - author (string)
      - coverUrl (string)
@@ -139,156 +141,161 @@ Download the latest APK from the [Releases](https://github.com/SidqiRaafi/NovelV
      - title (string)
      ```
 
-4. **Download Configuration Files**
-   - In Project Settings, click "Add app" and select **Android**
-   - Enter package name: `com.sawitkiawan.novelverse`
-   - Download `google-services.json`
-   - Place it in `android/app/` directory
+4. **Unduh File Konfigurasi**
+   - Di Project Settings, klik "Add app" dan pilih **Android**
+   - Masukkan nama paket: `com.sawitkiawan.novelverse`
+   - Unduh `google-services.json`
+   - Letakkan di direktori `android/app/`
 
-5. **Generate Firebase Options**
+5. **Hasilkan Firebase Options**
    ```bash
-   # Install FlutterFire CLI
+   # Instal FlutterFire CLI
    dart pub global activate flutterfire_cli
    
-   # Configure Firebase for your project
+   # Konfigurasi Firebase untuk proyek Anda
    flutterfire configure
    ```
-   - Select your Firebase project
-   - Choose platforms (at minimum: Android)
-   - This will generate `lib/firebase_options.dart` automatically
+   - Pilih proyek Firebase Anda
+   - Pilih platform (minimal: Android)
+   - Ini akan menghasilkan `lib/firebase_options.dart` secara otomatis
 
-### Local Setup
+### Pengaturan Lokal
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/SidqiRaafi/NovelVerse.git
 cd NovelVerse
 
-# Install dependencies
+# Instal dependensi
 flutter pub get
 
-# Run the app (make sure you've completed Firebase setup first)
+# Jalankan aplikasi (pastikan Anda telah menyelesaikan pengaturan Firebase terlebih dahulu)
 flutter run
 ```
 
-> **⚠️ Important:** The app won't run without proper Firebase configuration. Make sure you've completed all Firebase setup steps and have both `google-services.json` and `firebase_options.dart` in place.
+> **⚠️ Penting:** Aplikasi tidak akan berjalan tanpa konfigurasi Firebase yang tepat. Pastikan Anda telah menyelesaikan semua langkah pengaturan Firebase dan memiliki `google-services.json` dan `firebase_options.dart` di tempatnya.
 
 ### Build APK
 
 ```bash
-# Build release APK
+# Build APK rilis
 flutter build apk --release
 
-# Build split APKs per ABI (smaller file size)
+# Build APK terpisah per ABI (ukuran file lebih kecil)
 flutter build apk --split-per-abi
 ```
 
-The APK will be generated in `build/app/outputs/flutter-apk/`
+APK akan dihasilkan di `build/app/outputs/flutter-apk/`
 
-### Configuration Files (Not in Repository)
+### File Konfigurasi (Tidak Ada di Repository)
 
-These files contain sensitive configuration and are `.gitignore`d:
-- `android/app/google-services.json` - Firebase Android configuration
-- `lib/firebase_options.dart` - Firebase initialization options
+File-file ini berisi konfigurasi sensitif dan ada di `.gitignore`:
+- `android/app/google-services.json` - Konfigurasi Firebase Android
+- `lib/firebase_options.dart` - Opsi inisialisasi Firebase
 
-**Note:** Contact the maintainer if you need access to the existing Firebase project for development purposes.
-## 🗂️ Project Structure
+**Catatan:** Hubungi maintainer jika Anda memerlukan akses ke proyek Firebase yang ada untuk tujuan pengembangan.
+
+## 🗂️ Struktur Proyek
 
 ```
 android/
 ├── app/
-│   └── google-services.json        //ask maintainer  ✔️
+│   └── google-services.json        // tanya maintainer  ✔️
 │
 assets/
 ├── logo/
-│   └── logo.png                    //app logo        ✔️
+│   └── logo.png                    // logo aplikasi        ✔️
 │
 ├── demo/
-│   ├── welcome.png                 //showcase welcome screen       ✔️
-│   ├── login.png                   //showcase login screen         ✔️
-│   ├── register.png                //showcase register screen      ✔️
-│   ├── home1.png                   //showcase home screen          ✔️
-│   ├── home2.png                   //showcase novel screen          ✔️
-│   ├── home3.png                   //showcase add novel screen     ✔️
-│   ├── home4.png                   //showcase edit novel screen    ✔️
-│   ├── home5.png                   //showcase delete novel screen  ✔️
-│   ├── profile.png                 //showcase profile screen       ✔️
-│   └── about.png                   //showcase about app screen     ✔️
+│   ├── splash.png                  // tampilan layar splash         ✔️
+│   ├── welcome.png                 // tampilan layar selamat datang ✔️
+│   ├── login.png                   // tampilan layar login          ✔️
+│   ├── register.png                // tampilan layar registrasi     ✔️
+│   ├── home1.png                   // tampilan layar beranda        ✔️
+│   ├── home2.png                   // tampilan layar novel          ✔️
+│   ├── home3.png                   // tampilan layar tambah novel   ✔️
+│   ├── home4.png                   // tampilan layar edit novel     ✔️
+│   ├── home5.png                   // tampilan layar hapus novel    ✔️
+│   ├── profile.png                 // tampilan layar profil         ✔️
+│   └── about.png                   // tampilan layar tentang app    ✔️
 │
 lib/
 ├── models/
-│   ├── novel.dart                  //data novel    ✔️
-│   └── user.dart                   //data user     ✔️
+│   ├── novel.dart                  // model data novel    ✔️
+│   └── user.dart                   // model data user     ✔️
 │
 ├── screens/
 │   ├── auth/
-│   │   ├── auth_page.dart          //form login dan register     ✔️
-│   │   └── welcome_page.dart       //pilih login register        ✔️
+│   │   ├── auth_page.dart          // form login dan register     ✔️
+│   │   └── welcome_page.dart       // pilih login register        ✔️
 │   │
 │   ├── home/
-│   │   ├── add_novel_page.dart     //form tambah novel           ✔️
-│   │   ├── detail_page.dart        //detail novel                ✔️
-│   │   ├── edit_novel_page.dart    //edit novel                  ✔️
-│   │   ├── list_page.dart          //list novel dan search       ✔️
-│   │   └── main_page.dart          //navigasi                    ✔️
+│   │   ├── add_novel_page.dart     // form tambah novel           ✔️
+│   │   ├── detail_page.dart        // detail novel                ✔️
+│   │   ├── edit_novel_page.dart    // edit novel                  ✔️
+│   │   ├── list_page.dart          // list novel dan search       ✔️
+│   │   └── main_page.dart          // navigasi                    ✔️
 │   │
 │   ├── profile/
-│   │    └── about_page.dart         //info app dan dev           ✔️
-│   │    └── profile_page.dart       //tentang user dan logout    ✔️
-│   └── splash_screen.dart           //splash screen              ✔️
+│   │   ├── about_page.dart         // info app dan dev            ✔️
+│   │   └── profile_page.dart       // tentang user dan logout     ✔️
+│   └── splash_screen.dart          // splash screen               ✔️
 │
 ├── services/
-│   ├── auth_service.dart           //Firebase Auth Login dan Register      ✔️
-│   └── firestore_service.dart      //CRUD Novel                            ✔️
+│   ├── auth_service.dart           // Firebase Auth Login dan Register      ✔️
+│   └── firestore_service.dart      // operasi CRUD Novel                    ✔️
 │
 ├── widgets/
-│   └── auth_wrapper.dart           //Persistent Login System               ✔️
+│   └── auth_wrapper.dart           // Sistem Login Persisten                ✔️
 │
-├── firebase_options.dart           //ask maintainer                        ✔️
-└── main.dart                       //entry point                           ✔️
+├── firebase_options.dart           // tanya maintainer                      ✔️
+└── main.dart                       // entry point                           ✔️
 ```
 
-<a name="contributing"></a>
-## 🤝 Contributing
+<a name="kontribusi"></a>
+## 🤝 Kontribusi
 
-We welcome contributions from the community! Here's how you can help:
+Kami menerima kontribusi dari komunitas! Berikut cara Anda dapat membantu:
 
-1. **Fork the repository**
-2. **Create a feature branch**
+1. **Fork repository**
+2. **Buat branch fitur**
    ```bash
-   git checkout -b feature/AmazingFeature
+   git checkout -b feature/FiturKeren
    ```
-3. **Commit your changes**
+3. **Commit perubahan Anda**
    ```bash
-   git commit -m 'Add some AmazingFeature'
+   git commit -m 'Menambahkan FiturKeren'
    ```
-4. **Push to the branch**
+4. **Push ke branch**
    ```bash
-   git push origin feature/AmazingFeature
+   git push origin feature/FiturKeren
    ```
-5. **Open a Pull Request**
+5. **Buka Pull Request**
 
-### Contribution Guidelines
+### Panduan Kontribusi
 
-- Follow the existing code style and structure
-- Write clear, descriptive commit messages
-- Test your changes thoroughly before submitting
-- Update documentation if needed
-- Be respectful and constructive in discussions
+- Ikuti gaya dan struktur kode yang ada
+- Tulis pesan commit yang jelas dan deskriptif
+- Uji perubahan Anda secara menyeluruh sebelum mengirimkan
+- Perbarui dokumentasi jika diperlukan
+- Bersikap hormat dan konstruktif dalam diskusi
 
-## 🚀 Future Plans
+Untuk detail lebih lanjut, lihat [CONTRIBUTING.md](CONTRIBUTING.md).
 
-- 📖 Add ability to upload and read novel chapters
-- 🔖 Bookmark favorite novels
-- ⭐ User reviews and ratings system
-- 🔔 Notifications for new additions
-- 🍎 iOS platform support
-- 🌙 Dark mode theme
+## 🚀 Rencana Masa Depan
 
-<a name="contributors"></a>
-## 👥 Contributors
+- 📖 Kemampuan untuk mengunggah dan membaca bab novel
+- 🔖 Bookmark novel favorit
+- ⭐ Sistem rating dan review yang ditingkatkan
+- 🔔 Notifikasi untuk pembaruan
+- 🍎 Dukungan platform iOS
+- 🌙 Tema mode gelap
+- 🌐 Dukungan multi-bahasa
 
-Meet the team behind NovelVerse:
+<a name="kontributor"></a>
+## 👥 Kontributor
+
+Kenali tim di balik NovelVerse:
 
 <table>
   <tr>
@@ -327,27 +334,27 @@ Meet the team behind NovelVerse:
   </tr>
 </table>
 
-<a name="license"></a>
-## 📄 License
+<a name="lisensi"></a>
+## 📄 Lisensi
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Proyek ini dilisensikan di bawah Lisensi MIT - lihat file [LICENSE](LICENSE) untuk detailnya.
 
-## 📞 Contact & Support
+## 📞 Kontak & Dukungan
 
-If you have any questions, suggestions, or issues:
+Jika Anda memiliki pertanyaan, saran, atau masalah:
 
-- 🐛 [Report a Bug](https://github.com/SidqiRaafi/NovelVerse/issues)
-- 💡 [Request a Feature](https://github.com/SidqiRaafi/NovelVerse/issues)
-- 📧 Contact the maintainers through GitHub
+- 🐛 [Laporkan Bug](https://github.com/SidqiRaafi/NovelVerse/issues)
+- 💡 [Minta Fitur](https://github.com/SidqiRaafi/NovelVerse/issues)
+- 📧 Hubungi maintainer melalui GitHub
 
-## ⭐ Show Your Support
+## ⭐ Tunjukkan Dukungan Anda
 
-If you find NovelVerse helpful, please consider giving it a star! It helps others discover the project and motivates us to keep improving it.
+Jika Anda merasa NovelVerse bermanfaat, pertimbangkan untuk memberinya bintang! Ini membantu orang lain menemukan proyek ini dan memotivasi kami untuk terus memperbaikinya.
 
 ---
 
 <div align="center">
-  Made with Flutter 💙
+  Dibuat dengan Flutter 💙
   <br/>
-  <sub>Built with passion for book lovers everywhere</sub>
+  <sub>Dibangun dengan semangat untuk pecinta buku di mana saja</sub>
 </div>
