@@ -73,7 +73,7 @@ NovelVerse is a collaborative novel listing application that brings book enthusi
   <a href="https://youtu.be/-scBAf0Sv0s">
     <img src="https://img.youtube.com/vi/-scBAf0Sv0s/maxresdefault.jpg" alt="NovelVerse Demo Video 1" width="80%">
   </a>
-  <p><i>🎥 Demo Video 1 - Demo via Windowsw</i></p>
+  <p><i>🎥 Demo Video 1 - Demo via Windows</i></p>
 </div>
 
 <div align="center">
