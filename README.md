@@ -1,26 +1,40 @@
 **Bahasa:** [🇮🇩 Indonesian](README.md) | [🇺🇸 English](README.en.md)
 
 <div align="center">
-  <img src="assets/logo/logo.png" alt="Logo NovelVerse" width="200"/>
+  <img src="assets/logo/logo.png" alt="NovelVerse Logo" width="200"/>
   
   # NovelVerse
   
-  **Lacak Buku buku Favorit Anda**
+  **Teman pelacak buku pribadi Anda**
   
+  <p><i>Aplikasi mobile untuk mengelola dan melacak koleksi novel favorit Anda</i></p>
+  
+  <a href="https://github.com/SidqiRaafi/NovelVerse/releases/latest">
+    <img src="https://img.shields.io/badge/📥_Download-APK-brightgreen?style=for-the-badge" alt="Download APK">
+  </a>
+  <br/><br/>
+  
+  <!-- Tech Stack -->
   [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
   [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)
   [![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
   [![Platform](https://img.shields.io/badge/Platform-Android-green?style=for-the-badge&logo=android)](https://www.android.com/)
   
+  <!-- GitHub Stats -->
   [![GitHub stars](https://img.shields.io/github/stars/SidqiRaafi/NovelVerse?style=social)](https://github.com/SidqiRaafi/NovelVerse/stargazers)
   [![GitHub forks](https://img.shields.io/github/forks/SidqiRaafi/NovelVerse?style=social)](https://github.com/SidqiRaafi/NovelVerse/network/members)
-  [![GitHub issues](https://img.shields.io/github/issues/SidqiRaafi/NovelVerse)](https://github.com/SidqiRaafi/NovelVerse/issues)
-  [![GitHub pull requests](https://img.shields.io/github/issues-pr/SidqiRaafi/NovelVerse)](https://github.com/SidqiRaafi/NovelVerse/pulls)
-  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/SidqiRaafi/NovelVerse/pulls)
+  [![GitHub last commit](https://img.shields.io/github/last-commit/SidqiRaafi/NovelVerse)](https://github.com/SidqiRaafi/NovelVerse/commits/main)
   [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/SidqiRaafi/NovelVerse/graphs/commit-activity)
   
-  [Fitur](#fitur) • [Demo](#demo) • [Unduh](#unduh) • [Pengembangan](#pengembangan) • [Kontribusi](#kontribusi) • [Lisensi](#lisensi)
+  <p>
+    <a href="#fitur">Fitur</a> •
+    <a href="#demo">Demo</a> •
+    <a href="#unduh">Unduh</a> •
+    <a href="#pengembangan">Pengembangan</a> •
+    <a href="#kontribusi">Kontribusi</a> •
+    <a href="#lisensi">Lisensi</a>
+  </p>
   
 </div>
 
